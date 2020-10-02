@@ -111,6 +111,7 @@ let barWidth = 0
 const name = document.querySelector('.nickname')
 const startButton = document.querySelector('.start-button')
 const nextButton = document.querySelector('.next-button')
+const finishButton = document.querySelector('.finish-button')
 
 
 // div selectors
@@ -182,4 +183,22 @@ nextButton.addEventListener('click', () => {
         label.innerHTML += option + '<br>'
         form.appendChild(label)
     });
+    if (count === 19) {
+        nextButton.classList.add('hidden')
+        finishButton.classList.remove('hidden')
+    }
+})
+
+// finish button even listener
+
+finishButton.addEventListener('click', () => {
+    if (!document.querySelector('input[name=answer]:checked')){
+        return alert('Must provide an answer!')
+    }
+    const answer = document.querySelector('input[name=answer]:checked').value
+    if (answer === questions[count].answer){
+        score[0].score++
+    } else {
+        alert(`Correct answer: ${questions[count].answer}`)
+    }
 })

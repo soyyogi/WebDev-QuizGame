@@ -64,7 +64,7 @@ input {
     margin-bottom: 16px;
 }
 
-.next-button {
+.next-button, .finish-button {
     margin-top: 24px;
     width: 64px;
     height: 32px;
@@ -75,7 +75,7 @@ input {
     background: rgb(173, 238, 224);
 }
 
-.next-button:active{
+.next-button:active, .finish-button:active{
     transform: scale(0.95);
 }
 
