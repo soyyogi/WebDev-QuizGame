@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 600px;
+    margin: 0 auto;
+    background: url(./background.png);
+}
+
+.start-page {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.start-page > h1 {
+    font-size: 50px;
+}
+
+.start-page > p {
+    font-size: 30px;
+}
+
+.nickname {
+    margin-bottom: 24px;
+    background: rgb(240, 227, 208);
+    width: 250px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.nickname::placeholder{
+    text-align: center;
+}
+
+.start-button {
+    width: 64px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    
+    background: rgb(233, 205, 153);
+}
+
+.start-button:active{
+    transform: scale(0.95);
+}
