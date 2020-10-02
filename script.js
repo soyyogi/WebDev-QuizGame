@@ -112,6 +112,7 @@ const name = document.querySelector('.nickname')
 const startButton = document.querySelector('.start-button')
 const nextButton = document.querySelector('.next-button')
 const finishButton = document.querySelector('.finish-button')
+const retryButton = document.querySelector('.retry-button')
 
 
 // div selectors
@@ -128,7 +129,7 @@ const form = document.querySelector('.form')
 // start game event listeners
 
 startButton.addEventListener('click', () => {
-    startPage.style.display = 'none'
+    startPage.classList.add('hidden')
     score.unshift({
         name: name.value,
         score: 0
@@ -215,4 +216,12 @@ finishButton.addEventListener('click', () => {
     scoreTable.innerHTML += `<tr>
         <td>${score[0].name}</td>
         <td>${score[0].score}</td></tr>`
+})
+
+// retry button event listener
+
+retryButton.addEventListener('click', () => {
+    scoreBoard.classList.add('hidden')
+    startPage.classList.remove('hidden')
+    name.value = ''
 })
