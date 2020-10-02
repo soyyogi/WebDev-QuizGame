@@ -122,7 +122,7 @@ const progressBar = document.querySelector('.progress-bar')
 
 
 
-// event listeners
+// start game event listeners
 
 startButton.addEventListener('click', () => {
     startPage.style.display = 'none'
@@ -135,6 +135,8 @@ startButton.addEventListener('click', () => {
     q.textContent = questions[0].title
     game.appendChild(q)
 
+    const form = document.createElement('form')
+
     questions[0].options.forEach(option => {
         const input = document.createElement('input')
         const label = document.createElement('label')
@@ -142,12 +144,15 @@ startButton.addEventListener('click', () => {
         input.setAttribute('name', 'answer')
         input.value = option
         label.appendChild(input)
-        label.innerHTML += option
-        game.appendChild(label)
+        label.innerHTML += option + '<br>'
+        form.appendChild(label)
     });
+
+    game.appendChild(form)
 
     const nextButton = document.createElement('button')
     nextButton.classList.add('next-button')
     nextButton.textContent = 'Next'
     game.appendChild(nextButton)
 })
+
