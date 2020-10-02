@@ -1,3 +1,5 @@
+// questions list
+
 const questions = [
     {
         title: 'The attribute of <form> tag',
@@ -100,3 +102,52 @@ const questions = [
         answer: 'C. clearInterval()'
     },
 ]
+
+let score = []
+
+
+// name and start buttons selectors
+const name = document.querySelector('.nickname')
+const startButton = document.querySelector('.start-button')
+
+
+// div selectors
+const startPage = document.querySelector('.start-page')
+const game = document.querySelector('.game')
+const scoreBoard = document.querySelector('.score-board')
+
+
+// progress bar
+const progressBar = document.querySelector('.progress-bar')
+
+
+
+// event listeners
+
+startButton.addEventListener('click', () => {
+    startPage.style.display = 'none'
+    score.push({
+        name: name.value,
+        score: 0
+    })
+    
+    const q = document.createElement('h2')
+    q.textContent = questions[0].title
+    game.appendChild(q)
+
+    questions[0].options.forEach(option => {
+        const input = document.createElement('input')
+        const label = document.createElement('label')
+        input.setAttribute('type', 'radio')
+        input.setAttribute('name', 'answer')
+        input.value = option
+        label.appendChild(input)
+        label.innerHTML += option
+        game.appendChild(label)
+    });
+
+    const nextButton = document.createElement('button')
+    nextButton.classList.add('next-button')
+    nextButton.textContent = 'Next'
+    game.appendChild(nextButton)
+})
