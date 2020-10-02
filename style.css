@@ -53,7 +53,6 @@ body {
 }
 
 .game , form{
-    margin-top: 50px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -82,4 +81,17 @@ input {
 
 .hidden {
     display: none;
+}
+
+.progress-container {
+    width: 80%;
+    background: grey;
+    margin-top: 100px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.progress-bar {
+    height: 30px;
+    background: rgb(236, 222, 143);
 }

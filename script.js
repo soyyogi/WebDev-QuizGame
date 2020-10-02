@@ -105,6 +105,7 @@ const questions = [
 
 let score = []
 let count = 0
+let barWidth = 0
 
 // name and buttons selectors
 const name = document.querySelector('.nickname')
@@ -129,6 +130,9 @@ startButton.addEventListener('click', () => {
         name: name.value,
         score: 0
     })
+
+    progressContainer.classList.remove('hidden')
+    progressBar.style.width = '5%'
     
     const q = document.createElement('h2')
     q.textContent = questions[count].title
@@ -161,6 +165,8 @@ nextButton.addEventListener('click', () => {
         alert(`Correct answer: ${questions[count].answer}`)
     }
     count++
+    barWidth = ((count + 1)/.20)
+    progressBar.style.width = `${barWidth}%`
     form.innerHTML = ''
     const q = document.createElement('h2')
     q.textContent = questions[count].title
