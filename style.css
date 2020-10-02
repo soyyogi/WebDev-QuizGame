@@ -52,7 +52,7 @@ body {
     transform: scale(0.95);
 }
 
-.game , form{
+.game , form, .score-board{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -64,7 +64,7 @@ input {
     margin-bottom: 16px;
 }
 
-.next-button, .finish-button {
+.next-button, .finish-button, .retry-button {
     margin-top: 24px;
     width: 64px;
     height: 32px;
@@ -94,4 +94,18 @@ input {
 .progress-bar {
     height: 30px;
     background: rgb(236, 222, 143);
+}
+
+.score-board {
+    margin-top: 100px;
+}
+
+th, td {
+    padding: 0 32px;
+    padding-bottom: 16px;
+    font-size: 24px;
+}
+
+.retry-button {
+    background: rgb(241, 112, 112);
 }

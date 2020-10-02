@@ -118,6 +118,8 @@ const finishButton = document.querySelector('.finish-button')
 const startPage = document.querySelector('.start-page')
 const game = document.querySelector('.game')
 const scoreBoard = document.querySelector('.score-board')
+const scoreHeading = document.querySelector('.score')
+const scoreTable = document.querySelector('.score-table')
 const progressContainer = document.querySelector('.progress-container')
 const progressBar = document.querySelector('.progress-bar')
 const form = document.querySelector('.form')
@@ -201,4 +203,16 @@ finishButton.addEventListener('click', () => {
     } else {
         alert(`Correct answer: ${questions[count].answer}`)
     }
+
+    finishButton.classList.add('hidden')
+    form.innerHTML = ''
+    count = 0
+    barWidth = 0
+    progressContainer.classList.add('hidden')
+    scoreBoard.classList.remove('hidden')
+
+    scoreHeading.textContent = `Your Score : ${(score[0].score)/.20}%`
+    scoreTable.innerHTML += `<tr>
+        <td>${score[0].name}</td>
+        <td>${score[0].score}</td></tr>`
 })
