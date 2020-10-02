@@ -52,7 +52,7 @@ body {
     transform: scale(0.95);
 }
 
-.game {
+.game , form{
     margin-top: 50px;
     display: flex;
     justify-content: center;
@@ -78,4 +78,8 @@ input {
 
 .next-button:active{
     transform: scale(0.95);
+}
+
+.hidden {
+    display: none;
 }

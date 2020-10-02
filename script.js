@@ -104,40 +104,37 @@ const questions = [
 ]
 
 let score = []
+let count = 0
 
-
-// name and start buttons selectors
+// name and buttons selectors
 const name = document.querySelector('.nickname')
 const startButton = document.querySelector('.start-button')
+const nextButton = document.querySelector('.next-button')
 
 
 // div selectors
 const startPage = document.querySelector('.start-page')
 const game = document.querySelector('.game')
 const scoreBoard = document.querySelector('.score-board')
-
-
-// progress bar
+const progressContainer = document.querySelector('.progress-container')
 const progressBar = document.querySelector('.progress-bar')
-
+const form = document.querySelector('.form')
 
 
 // start game event listeners
 
 startButton.addEventListener('click', () => {
     startPage.style.display = 'none'
-    score.push({
+    score.unshift({
         name: name.value,
         score: 0
     })
     
     const q = document.createElement('h2')
-    q.textContent = questions[0].title
-    game.appendChild(q)
+    q.textContent = questions[count].title
+    form.appendChild(q)
 
-    const form = document.createElement('form')
-
-    questions[0].options.forEach(option => {
+    questions[count].options.forEach(option => {
         const input = document.createElement('input')
         const label = document.createElement('label')
         input.setAttribute('type', 'radio')
@@ -147,12 +144,36 @@ startButton.addEventListener('click', () => {
         label.innerHTML += option + '<br>'
         form.appendChild(label)
     });
-
-    game.appendChild(form)
-
-    const nextButton = document.createElement('button')
-    nextButton.classList.add('next-button')
-    nextButton.textContent = 'Next'
-    game.appendChild(nextButton)
+    
+    nextButton.classList.remove('hidden')
 })
 
+// next button event listener
+
+nextButton.addEventListener('click', () => {
+    if (!document.querySelector('input[name=answer]:checked')){
+        return alert('Must provide an answer!')
+    }
+    const answer = document.querySelector('input[name=answer]:checked').value
+    if (answer === questions[count].answer){
+        score[0].score++
+    } else {
+        alert(`Correct answer: ${questions[count].answer}`)
+    }
+    count++
+    form.innerHTML = ''
+    const q = document.createElement('h2')
+    q.textContent = questions[count].title
+    form.appendChild(q)
+
+    questions[count].options.forEach(option => {
+        const input = document.createElement('input')
+        const label = document.createElement('label')
+        input.setAttribute('type', 'radio')
+        input.setAttribute('name', 'answer')
+        input.value = option
+        label.appendChild(input)
+        label.innerHTML += option + '<br>'
+        form.appendChild(label)
+    });
+})
