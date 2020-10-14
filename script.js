@@ -124,20 +124,11 @@ const scoreTable = document.querySelector('.score-table')
 const progressContainer = document.querySelector('.progress-container')
 const progressBar = document.querySelector('.progress-bar')
 const form = document.querySelector('.form')
+const loading = document.querySelector('.loader')
 
+// display question function
 
-// start game event listeners
-
-startButton.addEventListener('click', () => {
-    startPage.classList.add('hidden')
-    score.unshift({
-        name: name.value,
-        score: 0
-    })
-
-    progressContainer.classList.remove('hidden')
-    progressBar.style.width = '5%'
-    
+const displayQuestion = () => {
     const q = document.createElement('h2')
     q.textContent = questions[count].title
     form.appendChild(q)
@@ -152,8 +143,30 @@ startButton.addEventListener('click', () => {
         label.innerHTML += option + '<br>'
         form.appendChild(label)
     });
+}
+
+// start game event listeners
+
+startButton.addEventListener('click', () => {
+    startPage.classList.add('hidden')
+    score.unshift({
+        name: name.value,
+        score: 0
+    })
+
+    progressContainer.classList.remove('hidden')
+    progressBar.style.width = '5%'
     
-    nextButton.classList.remove('hidden')
+    loading.classList.remove('hidden')
+
+    setTimeout(function(){
+        loading.classList.add('hidden')
+        displayQuestion()        
+        nextButton.classList.remove('hidden')
+
+    }, 500)
+
+    
 })
 
 // next button event listener
@@ -172,20 +185,14 @@ nextButton.addEventListener('click', () => {
     barWidth = ((count + 1)/(questions.length/100))
     progressBar.style.width = `${barWidth}%`
     form.innerHTML = ''
-    const q = document.createElement('h2')
-    q.textContent = questions[count].title
-    form.appendChild(q)
 
-    questions[count].options.forEach(option => {
-        const input = document.createElement('input')
-        const label = document.createElement('label')
-        input.setAttribute('type', 'radio')
-        input.setAttribute('name', 'answer')
-        input.value = option
-        label.appendChild(input)
-        label.innerHTML += option + '<br>'
-        form.appendChild(label)
-    });
+    loading.classList.remove('hidden')
+
+    setTimeout(function(){
+        loading.classList.add('hidden')
+        displayQuestion()
+    }, 500)
+
     if (count === questions.length - 1) {
         nextButton.classList.add('hidden')
         finishButton.classList.remove('hidden')
