@@ -5,7 +5,6 @@
 body {
     max-width: 600px;
     margin: 0 auto;
-    background: url(./background.png);
 }
 
 .start-page {
@@ -39,7 +38,8 @@ body {
     text-align: center;
 }
 
-.start-button {
+.start-button, .sort {
+    margin-bottom: 30px;
     width: 64px;
     height: 32px;
     font-size: 16px;

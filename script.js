@@ -113,6 +113,7 @@ const startButton = document.querySelector('.start-button')
 const nextButton = document.querySelector('.next-button')
 const finishButton = document.querySelector('.finish-button')
 const retryButton = document.querySelector('.retry-button')
+const sortScore = document.querySelector('.sort')
 
 
 // div selectors
@@ -143,6 +144,20 @@ const displayQuestion = () => {
         label.innerHTML += option + '<br>'
         form.appendChild(label)
     });
+}
+
+// render score function
+
+const renderScore = () => {
+    scoreTable.innerHTML = `<tr>
+    <th>Name</th>
+    <th>Score</th></tr>`
+
+    score.forEach(player => {
+        scoreTable.innerHTML += `<tr>
+        <td>${player.name}</td>
+        <td>${player.score}</td></tr>`
+    })
 }
 
 // start game event listeners
@@ -220,9 +235,7 @@ finishButton.addEventListener('click', () => {
     scoreBoard.classList.remove('hidden')
 
     scoreHeading.textContent = `Your Score : ${(score[0].score)/(questions.length/100)}%`
-    scoreTable.innerHTML += `<tr>
-        <td>${score[0].name}</td>
-        <td>${score[0].score}</td></tr>`
+    renderScore()
 })
 
 // retry button event listener
@@ -231,4 +244,24 @@ retryButton.addEventListener('click', () => {
     scoreBoard.classList.add('hidden')
     startPage.classList.remove('hidden')
     name.value = ''
+})
+
+// sort score
+sortScore.addEventListener('click', () => {
+    const compare = (a, b) => {
+        const scoreA = a.score;
+        const scoreB = b.score;
+      
+        let comparison = 0;
+        if (scoreA > scoreB) {
+          comparison = 1;
+        } else if (scoreA < scoreB) {
+          comparison = -1;
+        }
+        return comparison * -1;
+    }
+
+    score.sort(compare)
+    renderScore()
+      
 })
