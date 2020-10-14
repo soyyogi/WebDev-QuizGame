@@ -100,7 +100,7 @@ const questions = [
         title: 'Which method receives the return value of setInterval() to cancel future invocations?',
         options: ['A. clearInvocation()', 'B. cancelInvocation()', 'C. clearInterval()', 'D. clear()'],
         answer: 'C. clearInterval()'
-    },
+    }
 ]
 
 let score = []
@@ -169,7 +169,7 @@ nextButton.addEventListener('click', () => {
         alert(`Correct answer: ${questions[count].answer}`)
     }
     count++
-    barWidth = ((count + 1)/.20)
+    barWidth = ((count + 1)/(questions.length/100))
     progressBar.style.width = `${barWidth}%`
     form.innerHTML = ''
     const q = document.createElement('h2')
@@ -186,7 +186,7 @@ nextButton.addEventListener('click', () => {
         label.innerHTML += option + '<br>'
         form.appendChild(label)
     });
-    if (count === 19) {
+    if (count === questions.length - 1) {
         nextButton.classList.add('hidden')
         finishButton.classList.remove('hidden')
     }
@@ -212,7 +212,7 @@ finishButton.addEventListener('click', () => {
     progressContainer.classList.add('hidden')
     scoreBoard.classList.remove('hidden')
 
-    scoreHeading.textContent = `Your Score : ${(score[0].score)/.20}%`
+    scoreHeading.textContent = `Your Score : ${(score[0].score)/(questions.length/100)}%`
     scoreTable.innerHTML += `<tr>
         <td>${score[0].name}</td>
         <td>${score[0].score}</td></tr>`
