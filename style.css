@@ -14,6 +14,7 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .start-page > h1 {
@@ -58,6 +59,7 @@ body {
     flex-direction: column;
     align-items: center;
     font-size: 18px;
+    text-align: center;
 }
 
 input {
