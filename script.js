@@ -128,22 +128,45 @@ const form = document.querySelector('.form')
 const loading = document.querySelector('.loader')
 
 // display question function
+// different input options
 
 const displayQuestion = () => {
     const q = document.createElement('h2')
     q.textContent = questions[count].title
     form.appendChild(q)
-
-    questions[count].options.forEach(option => {
-        const input = document.createElement('input')
-        const label = document.createElement('label')
-        input.setAttribute('type', 'radio')
-        input.setAttribute('name', 'answer')
-        input.value = option
-        label.appendChild(input)
-        label.innerHTML += option + '<br>'
-        form.appendChild(label)
-    });
+    if ( count % 3 == 0) {
+        questions[count].options.forEach(option => {
+            const input = document.createElement('input')
+            const label = document.createElement('label')
+            input.setAttribute('type', 'checkbox')
+            input.setAttribute('name', 'answer')
+            input.value = option
+            label.appendChild(input)
+            label.innerHTML += option + '<br>'
+            form.appendChild(label)
+        });
+    } else if (count % 7 == 0 || count % 5 == 0) {
+        const select = document.createElement('select')
+        select.classList.add('select')
+        questions[count].options.forEach(option => {
+            const ans = document.createElement('option')
+            ans.setAttribute('value', option)
+            ans.textContent = option
+            select.appendChild(ans)
+        })
+        form.appendChild(select)
+    } else {
+        questions[count].options.forEach(option => {
+            const input = document.createElement('input')
+            const label = document.createElement('label')
+            input.setAttribute('type', 'radio')
+            input.setAttribute('name', 'answer')
+            input.value = option
+            label.appendChild(input)
+            label.innerHTML += option + '<br>'
+            form.appendChild(label)
+        });
+    }
 }
 
 // render score function
@@ -187,11 +210,10 @@ startButton.addEventListener('click', () => {
 // next button event listener
 
 nextButton.addEventListener('click', () => {
-    if (!document.querySelector('input[name=answer]:checked')){
+    const answer = document.querySelector('input[name=answer]:checked') || document.querySelector('.select')
+    if (!answer){
         return alert('Must provide an answer!')
-    }
-    const answer = document.querySelector('input[name=answer]:checked').value
-    if (answer === questions[count].answer){
+    } else if (answer.value === questions[count].answer){
         score[0].score++
     } else {
         alert(`Correct answer: ${questions[count].answer}`)
@@ -217,11 +239,10 @@ nextButton.addEventListener('click', () => {
 // finish button even listener
 
 finishButton.addEventListener('click', () => {
-    if (!document.querySelector('input[name=answer]:checked')){
+    const answer = document.querySelector('input[name=answer]:checked') || document.querySelector('.select')
+    if (!answer){
         return alert('Must provide an answer!')
-    }
-    const answer = document.querySelector('input[name=answer]:checked').value
-    if (answer === questions[count].answer){
+    } else if (answer.value === questions[count].answer){
         score[0].score++
     } else {
         alert(`Correct answer: ${questions[count].answer}`)

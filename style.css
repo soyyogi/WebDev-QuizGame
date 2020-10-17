@@ -66,6 +66,11 @@ input {
     margin-bottom: 16px;
 }
 
+.select {
+    font-size: 18px;
+    text-align: center;
+}
+
 .next-button, .finish-button, .retry-button {
     margin-top: 24px;
     width: 64px;
