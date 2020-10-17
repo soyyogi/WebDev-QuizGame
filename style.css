@@ -82,16 +82,32 @@ input {
 }
 
 .progress-container {
-    width: 80%;
-    background: grey;
+    height: 20px;
+    background: whitesmoke;
     margin-top: 100px;
     margin-left: 10%;
     margin-right: 10%;
+    position: relative;
 }
 
 .progress-bar {
-    height: 30px;
-    background: rgb(236, 222, 143);
+    height: 20px;
+    background: rgb(184, 179, 175);
+    position: absolute;
+}
+
+.progress-bar-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.progress-bar-step {
+    text-align: center;
+    display: inline-block;
+    border-radius: 10%;
+    border: black solid 1px;
 }
 
 .score-board {
@@ -110,18 +126,38 @@ th, td {
 
 .loader {
     margin: 50px 0;
-    border: 16px solid #7c7979;
-    border-top: 16px solid rgb(173, 238, 224);
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.loader:after {
+    content: " ";
+    display: block;
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 32px solid #fff;
+    border-color: rgb(233, 205, 153) transparent rgb(233, 205, 153) transparent;
+    animation: loader 1.2s infinite;
 }
-  
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+
+@keyframes loader {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+}  
 
 .hidden {
     display: none;
